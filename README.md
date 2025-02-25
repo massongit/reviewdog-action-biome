@@ -1,4 +1,4 @@
-# reviewdog-action-biome
+# reviewdog-action-biomeeee
 
 
 [![test](https://github.com/mongolyy/reviewdog-action-biome/actions/workflows/test-action.yml/badge.svg)](https://github.com/mongolyy/reviewdog-action-biome/actions/workflows/test-action.yml)
