@@ -13,6 +13,23 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 echo '::group:: Running Biome with reviewdog 🐶 ...'
 if [ "$INPUT_REPORTER" = "github-pr-review" ]; then
+  echo reviewdog \
+      -efm="%-G%f ci ━%#" \
+      -efm="%-G%f lint ━%#" \
+      -efm="%-Gci ━%#" \
+      -efm="%E%f:%l:%c %.%#" \
+      -efm="%E%f %.%#" \
+      -efm="%C" \
+      -efm="%C  × %m" \
+      -efm="%C  %m" \
+      -efm="%-G%.%#" \
+      -name="${INPUT_TOOL_NAME}" \
+      -reporter="${INPUT_REPORTER}" \
+      -filter-mode="${INPUT_FILTER_MODE}" \
+      ${INPUT_FAIL_LEVEL:+-fail-level="${INPUT_FAIL_LEVEL}"} \
+      ${INPUT_FAIL_ON_ERROR:+-fail-on-error="${INPUT_FAIL_ON_ERROR}"} \
+      -level="${INPUT_LEVEL}" \
+      ${INPUT_REVIEWDOG_FLAGS}
   # shellcheck disable=SC2086
   biome_check ${INPUT_BIOME_FLAGS} |
     reviewdog \
